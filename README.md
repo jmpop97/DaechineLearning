@@ -1,4 +1,9 @@
 # DaechineLearning
+https://daechinelearning.netlify.app/
+
+# DaechineLearning_front
+https://github.com/Namunllvo/DaechineLearning_front
+
 
 # 프로젝트 개요
     본 프로젝트에서는 사용자가 음악을 추천할 수 있고 소개된 음악을 감상하며 게시글에 머문 시간을 통해 장르 선호도를 예상하고 그에 맞는 음악을 추천해줄 수 있습니다.
