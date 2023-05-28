@@ -10,7 +10,7 @@ urlpatterns = [
     path("save_music", views.SaveMusic.as_view(),name="save_music"),
     # 메인 게시글 작성(POST), 불러오기(GET)
     path('', views.ArticleView.as_view(), name='article_main'),
-    path('<int:article_id>/', views.ArticleDetailView.as_view(), name='article_detail'),  # 특정 게시글 불러와, 수정, 삭제(GET,PUT,DEL)
+    path('<int:pk>/', views.ArticleDetailView.as_view(), name='article_detail'),  # 특정 게시글 불러와, 수정, 삭제(GET,PUT,DEL)
     path('genre/', views.GenreView.as_view(), name='genre'),                        # 장르 조회 / 생성
     path('genre/<int:genre_id>/', views.GenreView.as_view(), name='genre_update'),  # 장르 수정 / 삭제
     path('<int:article_id>/genre/', views.MusicGenreTableView.as_view(), name='article_genre'),  # 게시글 장르 조회 

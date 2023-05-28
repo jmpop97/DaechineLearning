@@ -4,6 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.db import models
 
 
+
 class CommonModel(models.Model):
     db_status_choice = [
         (1, 'active'),
@@ -75,3 +76,12 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+from articles.views import Article
+class UserActiveArticle(CommonModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_active_list')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='user_active_list')
+    # article = models.ForeignKey(Music, on_delete=models.CASCADE, related_name='music_active_list')
+    listen_rate = models.DecimalField(max_digits=9,decimal_places=8)
+

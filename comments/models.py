@@ -27,6 +27,9 @@ class UserBoughtEmoticon(CommonModel):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='emoticon_list')
     emoticon = models.ForeignKey(Emoticon, on_delete=models.CASCADE, related_name='sold_emoticon')
 
+    def __str__(self):
+        return f'이모티콘: {self.emoticon}//사용자: {self.buyer}'
+
 # 댓글 모델
 class Comment(CommonModel):
     writer = models.ForeignKey(User, on_delete=models.CASCADE)

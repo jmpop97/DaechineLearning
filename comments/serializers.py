@@ -4,6 +4,11 @@ from comments.models import Comment, Emoticon, EmoticonImages, UserBoughtEmotico
 
 # 댓글
 class CommentSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+
+    def get_username(self, comment):
+        return comment.writer.username
+
     class Meta:
         model = Comment
         fields = "__all__"

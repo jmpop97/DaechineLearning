@@ -170,6 +170,20 @@ class UserBoughtEmoticonView(APIView):
         else:
             return Response({"message": "권한이 없습니다!"}, status=status.HTTP_403_FORBIDDEN)
 
+# 기본 이모티콘 저장
+try:
+    if Emoticon.objects.filter(title="기본"):
+        pass
+    else:
+        base_emoticon = Emoticon(title='기본')
+        base_emoticon.save()
+        input_images = ["/base_emoticon/기본1.png", "/base_emoticon/기본2.jfif", "/base_emoticon/기본3.gif", "/base_emoticon/기본4.png", "/base_emoticon/기본5.png", "/base_emoticon/기본6.gif", "/base_emoticon/기본7.png", "/base_emoticon/기본8.png"]
+        for a in input_images:
+            temp = EmoticonImages(emoticon=base_emoticon, image=a)
+            temp.save()
+except:
+    pass
+
 # 기본 이모티콘 가져오기
 class UserBaseEmoticonView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -178,3 +192,7 @@ class UserBaseEmoticonView(APIView):
         base_emoticon = get_object_or_404(Emoticon, title='기본')
         serializer = EmoticonSerializer(base_emoticon)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class testView(APIView):
+    def post(self, request):
+        return Response(status=status.HTTP_200_OK)
