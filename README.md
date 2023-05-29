@@ -104,9 +104,9 @@ https://github.com/Namunllvo/DaechineLearning_front
 |comments/emoticon/detail/<int:emoticon_id>|GET|이모티콘 자세히 보기 / 수정|||
 |comments/emoticon/<int:user_id>|GET, POST, DELETE|유저가 가진 이모티콘 조회 / 선택|||
 |comments/emoticon/<int:user_id>/base|GET|기본 이모티콘 가져오기|||
-|users/dj-rest-auth/registration|POST|일반 회원 회원가입|{"username": "이름","email": "이메일","password1": "복잡비밀번호1","password2": "복잡비밀번호2"}||
-|users/dj-rest-auth/registration/login|POST|일반 회원 로그인|{"username": "유저이름","password": "복잡비밀번호"}||
+|users/dj-rest-auth/registration|POST|일반 회원 회원가입|{"username": "이름","email": "이메일","password1": "복잡비밀번호1","password2": "복잡비밀번호2"}|{"username","email","password1","password2"}|
+|users/dj-rest-auth/registration/login|POST|일반 회원 로그인|{"username": "유저이름","password": "복잡비밀번호"}|{"username","password"}|
 |users/dj-rest-auth/registration/logout|POST|일반 회원 로그아웃||
-|users/dj-rest-auth/registration/resend-email|POST|일반 회원 이메일 인증 재전송|{"email": "이메일"}||
-|users/dj-rest-auth/password/change|POST|일반 회원 회원가입/로그인|{"password1": "복잡비밀번호1","password2": "복잡비밀번호2"}||
-|users/active|POST|유저가 클릭한 이메일(=링크) 확인|request|response|
+|users/dj-rest-auth/registration/resend-email|POST|일반 회원 이메일 인증 재전송|{"email": "이메일"}|{"email"}|
+|users/dj-rest-auth/password/change|POST|일반 회원 회원가입/로그인|{"password1": "복잡비밀번호1","password2": "복잡비밀번호2"}|{"password1","password2"}|
+|users/active|POST|유저가 클릭한 이메일(=링크) 확인|||
