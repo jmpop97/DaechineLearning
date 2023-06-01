@@ -13,7 +13,7 @@ from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 from rest_framework import permissions
 from datetime import datetime, timedelta
 
-
+# 이메일 인증 확인 view
 class ConfirmEmailView(APIView):
     permission_classes = [AllowAny]
 
@@ -21,7 +21,7 @@ class ConfirmEmailView(APIView):
         self.object = confirmation = self.get_object()
         confirmation.confirm(self.request)
         # A React Router Route will handle the failure scenario
-        return HttpResponseRedirect(EMAIL['REDIRECT_PAGE']) # 인증성공
+        return HttpResponseRedirect('/') # 인증성공
 
     def get_object(self, queryset=None):
         key = self.kwargs['key']

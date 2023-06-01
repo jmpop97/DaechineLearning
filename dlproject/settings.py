@@ -161,8 +161,8 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_HEADERS = ( 
-    'authorization',
+CORS_ALLOW_HEADERS = ( # CORS 이슈 해결
+    'authorization',    
     'content-type',
     )
 
@@ -210,18 +210,18 @@ SIMPLE_JWT = {
 REST_AUTH = {
     'USE_JWT': True,
     'SESSION_LOGIN': False,
-    'JWT_TOKEN_CLAIMS_SERIALIZER': 'users.serializers.CustomTokenObtainPairSerializer',
+    'JWT_TOKEN_CLAIMS_SERIALIZER': 'users.serializers.CustomTokenObtainPairSerializer', # 커스텀한 토큰 시리얼라이저
     'JWT_AUTH_HTTPONLY':False # refresh 토큰 생성
 }
-REST_USE_JWT = True
+REST_USE_JWT = True # 기본 설정
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True            # email 필드 필수-이메일 인증
 ACCOUNT_USERNAME_REQUIRED = True        # username 필드 필수-로그인시
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-# ACCOUNT_EMAIL_VERIFICATION = 'none'    # 메일 주소를 인증하지 않으면 회원가입하더라도 로그인할 수 없다
+ACCOUNT_AUTHENTICATION_METHOD = 'username' # username으로 로그인 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True # 유저가 받은 링크를 클릭하면 회원가입 완료
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'    # 이메일 인증 필수!! 인증후 로그인
+LOGIN_URL = 'https://daechinelearning.netlify.app/templates/signup.html'   # 이메일 인증 링크 - 로그인 페이지로 이동
 
 # 이메일 인증
 EMAIL_BACKEND = my_settings.EMAIL['EMAIL_BACKEND']
