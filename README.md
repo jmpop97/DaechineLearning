@@ -19,7 +19,12 @@ https://github.com/Namunllvo/DaechineLearning_front
     - 모든 모델에 적용될 수 있도록 공통필드를 가진 모델을 작성한 후 이를 상속받아 모델작성이 진행됐습니다.
 
 ### 유저모델
-    - 흠......................................................... 유저는 잘몰라서 어떻게 쓰죠...?
+    - 사용자에게 직접 정보를 받아 데이터를 db에 저장합니다.
+    - email, username은 unique, 필수 입력값입니다.
+    - email은 회원가입 후 email verification에 사용합니다.
+    - password는 필수 입력값이며, 단순한 password는 사용할 수 없습니다.
+    - username으로 로그인 합니다.
+    - account-emailaddress 테이블에서 유저가 회원가입 후 이메일 인증을 완료했는지 verified 필드로 확인할 수 있습니다.
 
 ### 게시글 모델
     - 게시글 모델은 open api를 통해 받아온 데이터로 music모델을 생성하고 music모델을 참조하는 모델로 생성됩니다.
@@ -43,8 +48,13 @@ https://github.com/Namunllvo/DaechineLearning_front
     최초 메인페이지에서는 작성된 게시글들을 확인할 수 있고 게시글 조회 및 댓글 조회는 로그인 없이도 이용할 수 있도록 진행됐습니다.
     이외의 기능을 사용하기 위해서는 회원 권한이 요구되며 회원가입은 이메일 인증을 통해 완료할 수 있습니다.
 
-### 유저관련?
-    - 
+### 유저관련
+    사용자 인증 관리 기능 입니다.
+        - 회원가입, 이메일 인증, 로그인, 로그인된 유저가 비밀번호를 변경할 수 있습니다.
+        - 회원가입 후 이메일 인증을 완료해야 로그인 할 수 있습니다.
+        - 이메일 인증 링크는 로그인 페이지로 이동합니다.
+        - 이메일 인증이 왼료된 유저가 로그인 시 jwt token을 생성하고 localstorage에 저장됩니다.
+        - 로그아웃시 저장된 token을 삭제합니다.
 
 ### 게시글 작성
     음악을 추천할 수 있는 게시글을 작성하는 기능입니다.
@@ -94,6 +104,9 @@ https://github.com/Namunllvo/DaechineLearning_front
 |comments/emoticon/detail/<int:emoticon_id>|GET|이모티콘 자세히 보기 / 수정|||
 |comments/emoticon/<int:user_id>|GET, POST, DELETE|유저가 가진 이모티콘 조회 / 선택|||
 |comments/emoticon/<int:user_id>/base|GET|기본 이모티콘 가져오기|||
-|users/dj-rest-auth|POST|일반 회원 회원가입/로그인|request|response|
-|users/dj-rest-auth/registration|POST|일반 회원 회원가입/로그인|request|response|
-|users/active|POST|유저가 클릭한 이메일(=링크) 확인|request|response|
+|users/dj-rest-auth/registration|POST|일반 회원 회원가입|{"username": "이름","email": "이메일","password1": "복잡비밀번호1","password2": "복잡비밀번호2"}|{"username","email","password1","password2"}|
+|users/dj-rest-auth/registration/login|POST|일반 회원 로그인|{"username": "유저이름","password": "복잡비밀번호"}|{"username","password"}|
+|users/dj-rest-auth/registration/logout|POST|일반 회원 로그아웃||
+|users/dj-rest-auth/registration/resend-email|POST|일반 회원 이메일 인증 재전송|{"email": "이메일"}|{"email"}|
+|users/dj-rest-auth/password/change|POST|일반 회원 회원가입/로그인|{"password1": "복잡비밀번호1","password2": "복잡비밀번호2"}|{"password1","password2"}|
+|users/active|POST|유저가 클릭한 이메일(=링크) 확인|||
